@@ -1,0 +1,74 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: distansfe24
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: Shui-bulletin-board-backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  iam:
+    role: arn:aws:iam::481310453748:role/cloud-course
+
+functions:
+  createMessage:
+    handler: functions/createMessage/index.handler
+    events:
+      - httpApi:
+          path: /messages
+          method: post
+  updateMessage:
+    handler: functions/updateMessage/index.handler
+    events:
+      - httpApi:
+          path: /messages/{id}
+          method: put
+  listMessages:
+    handler: functions/listMessages/index.handler
+    events:
+      - httpApi:
+          path: /messages
+          method: get
+  listMessagesByUser:
+    handler: functions/listMessagesByUser/index.handler
+    events:
+      - httpApi:
+          path: /messages/{username}
+          method: get
+
+resources:
+  Resources:
+    ShuiBulletinBoardTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ShuiBulletinBoard
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: messageId
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: S
+          - AttributeName: globalPk
+            AttributeType: S
+        KeySchema:
+          - AttributeName: messageId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: globalTimelineIndex
+            KeySchema:
+              - AttributeName: globalPk
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+          - IndexName: userTimelineIndex
+            KeySchema:
+              - AttributeName: username
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
