@@ -1,8 +1,11 @@
+import SingularCard from "../../components/SingularCard/SingularCard";
+import "./addMsgPage.css"
+
 function AddMsgPage() {
 
     return (
-        <section className="page">
-            <h1>Add Message</h1>
+        <section className="page page--one-msg">
+            <SingularCard />
         </section>
     )
 }

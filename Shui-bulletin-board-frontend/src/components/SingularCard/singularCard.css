@@ -1,0 +1,82 @@
+.add-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #0f1c3d; /* mörkblå bakgrund runt form */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.bubble{
+  position: relative;
+  flex: 1;
+  display: flex;
+}
+
+.add-msg__text {
+  width: 100%;
+  min-height: 120px;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  resize: vertical;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.4;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  flex: 1;
+  resize: none;
+}
+
+/* pratbubbel-pil */
+.bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  right: 20px;
+  border-width: 15px 10px 0 10px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+/* Input för användarnamn */
+.add-msg__name {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #1c2d59;
+  border-radius: 0.5rem;
+  background-color: #0f1c3d;
+  color: white;
+  font-size: 0.95rem;
+  margin: 3rem 0 1rem;
+}
+
+.add-msg__name::placeholder {
+  color: #aab2d4;
+}
+
+/* Submit-knappen */
+.add-msg__btn {
+  background-color: #e53935; /* röd */
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-msg__btn:hover {
+  background-color: #c62828;
+}
+
+.add-msg__btn:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}

@@ -10,12 +10,15 @@ export async function fetchUserMessages(username) {
     return res.json();
 };
 
-export async function addMessage(username, text) {
+export async function addMessage(text, username) {
     const res = await fetch(`${API_URL}/messages`, {
         method: "POST",
         headers: {"content-Type": "application/json"},
-        body: JSON.stringify({username, text}),
+        body: JSON.stringify({text, username}),
     });
+
+    if(!res.ok) throw new Error("Kunde inte spara meddelandet")
+
     return res.json();
 };
 

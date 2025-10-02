@@ -1,6 +1,6 @@
-import "./MsgCard.css"
+import "./flowCard.css"
 
-function MsgCard() {
+function FlowCard() {
     return (
         <section className="card">
             <div className="card-header">
@@ -14,5 +14,5 @@ function MsgCard() {
     )
 }
 
-export default MsgCard;
+export default FlowCard;
 

@@ -1,4 +1,4 @@
-import MsgCard from "../../components/MsgCard/MsgCard";
+import FlowCard from "../../components/FlowCard/FlowCard";
 import "./flowPage.css";
 
 function FlowPage() {
@@ -8,7 +8,7 @@ function FlowPage() {
             <section className="feed">
                 {
                     Array.from({ length: 10}).map((_, i) => (
-                        <MsgCard key={i} />
+                        <FlowCard key={i} />
                     ))
                 }
             </section>
