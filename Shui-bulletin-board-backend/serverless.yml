@@ -6,6 +6,8 @@ service: Shui-bulletin-board-backend
 provider:
   name: aws
   runtime: nodejs20.x
+  httpApi:
+    cors: true
   region: eu-north-1
   iam:
     role: "${env:IAM_ROLE_ARN}"
