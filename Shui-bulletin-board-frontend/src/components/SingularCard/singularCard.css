@@ -61,7 +61,7 @@
   color: #aab2d4;
 }
 
-.add-msg__btn {
+.btn {
   background-color: #e53935; 
   color: white;
   border: none;
@@ -80,6 +80,11 @@
 .add-msg__btn:disabled {
   background-color: #888;
   cursor: not-allowed;
+}
+
+.delete__btn{
+  background-color: #888;
+  color: black;
 }
 
 .error{

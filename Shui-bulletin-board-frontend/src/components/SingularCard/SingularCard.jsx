@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { deleteMessage } from "../../api/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./singularCard.css"
@@ -9,7 +10,8 @@ function SingularCard({
     initText = "",
     initUsername = "",
     isEdit = false,
-    onSubmit
+    onSubmit, 
+    id
 }) {
 
     const [text, setText] = useState(initText);
@@ -39,6 +41,16 @@ function SingularCard({
             SetLoading(false);
         }
     }
+
+    async function handleDelete() {
+        try {
+            console.log("nu har jag tryckt")
+            await deleteMessage(id);
+            navigate("/");
+        } catch (error) {
+            setError(error.message)
+        }
+    }
  
 
      return (
@@ -66,11 +78,20 @@ function SingularCard({
                 onChange={(e) => setUsername(e.target.value)}
             />
             {error && <p className="error"><strong>ERROR:</strong> {error}</p>}
-            <button className="add-msg__btn" type="submit" disabled={loading}>
+            <button className="btn add-msg__btn" type="submit" disabled={loading}>
                 {loading 
                 ? (isEdit ? "Uppdaterar..." : "Publicerar...") 
                 : (isEdit ? "Uppdatera" : "Publicera")}
             </button>
+            {isEdit && 
+                <button 
+                type="button"
+                    onClick={handleDelete}
+                    className="btn delete__btn"
+                >
+                    Radera
+                </button>
+            }
         </form>
      )
 }

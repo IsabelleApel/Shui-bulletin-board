@@ -31,7 +31,7 @@ function FlowCard({msg}) {
             } 
         >
             <div className="card-header">
-                <span className="date">{formatDate(msg.createdAt)}</span>
+                <span className="date">{formatDate(msg.lastUpdatedAt)}</span>
             </div>
             <div className="card-body">
                 <div className="card-body__left">

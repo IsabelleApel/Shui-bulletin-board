@@ -20,7 +20,7 @@ function FlowPage() {
                         <FlowCard key={msg.messageId} msg={msg}/>
                     ))
                     ) : (
-                        <p className="no-msg">Inga meddelanden funna</p>
+                        <p className="no-msg">Inga meddelanden funna. Skapa gärna ett nytt!</p>
                     )
                 }
                 <Link to="messages/add" className="add-btn">

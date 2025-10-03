@@ -16,10 +16,11 @@ function UpdateMsgPage() {
                 initText={message.text}
                 initUsername={message.username}
                 isEdit={true}
+                id={id}
                 onSubmit={(text, username) => updateMessage(id, username, text)}
             />
         </section>
     )
 }
 
-export default UpdateMsgPage;
+export default UpdateMsgPage;   

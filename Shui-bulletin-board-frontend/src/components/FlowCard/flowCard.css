@@ -2,16 +2,25 @@
   background: white;
   border-radius: 8px;
   padding: 1rem;
+  margin: 0 1rem;
   position: relative;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   cursor: pointer;
 }
 
-.card:first-child{
-  margin-top: 60px;
+.card:nth-child(odd)::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
 }
 
-.card::after {
+.card:nth-child(even)::after {
   content: "";
   position: absolute;
   bottom: -10px;

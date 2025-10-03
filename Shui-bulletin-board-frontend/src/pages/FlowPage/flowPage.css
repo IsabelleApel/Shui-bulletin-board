@@ -15,6 +15,14 @@
   max-width: 500px;
   margin: auto;
   color: #222;
+  
+}
+
+.no-msg {
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.6rem;
+  text-align: center;
 }
 
 .add-btn {

@@ -1,12 +1,26 @@
 .header {
-  width: 100%;
-  position: relative;
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+  h1{
+    padding-top: 2rem;
+    font-size: 3rem;
+  }
+
+  p{
+    font-style: italic;
+    color: #e53935;
+    border-top: 1px solid #e53935;
+    margin: 0 2rem 1rem;
+    padding-top: .5rem;
+  }
 }
 
 .logo-text {
     position: fixed;
     z-index: 1;
-    background-color: #e53935;  /* röd bakgrund */
+    background-color: #e53935;
     color: white;
     font-weight: bold;
     font-size: 1.5rem;
