@@ -19,12 +19,13 @@ export const handler = async (event) => {
                 messageId: { S: messageId }
             },
             UpdateExpression:
-                "SET username = :username, #t = :t, modifiedAt = :modifiedAt",
+                "SET username = :username, #t = :t, modifiedAt = :modifiedAt, lastUpdatedAt = :last",
             ConditionExpression: "attribute_exists(messageId)",
             ExpressionAttributeValues: {
                 ":username": { S: username },
                 ":t": { S: text },
-                ":modifiedAt": { S: modifiedAt }
+                ":modifiedAt": { S: modifiedAt },
+                ":last": { S: modifiedAt }
             },
             ExpressionAttributeNames: {
                 "#t": "text"
@@ -42,6 +43,7 @@ export const handler = async (event) => {
                 username, 
                 text,
                 modifiedAt: formatDate(modifiedAt),
+                lastUpdatedAt: formatDate(modifiedAt)
             }
         });
 

@@ -27,6 +27,7 @@ export const handler = async (event) => {
             text: item.text.S,
             createdAt: formatDate(item.createdAt.S),
             modifiedAt: item.modifiedAt ? formatDate(item.modifiedAt.S) : null,
+            lastUpdatedAt: item.lastUpdatedAt.S
         }));
 
         return sendResponse(200, {

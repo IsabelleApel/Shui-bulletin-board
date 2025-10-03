@@ -56,7 +56,7 @@ resources:
             AttributeType: S
           - AttributeName: username
             AttributeType: S
-          - AttributeName: createdAt
+          - AttributeName: lastUpdatedAt
             AttributeType: S
           - AttributeName: globalPk
             AttributeType: S
@@ -68,7 +68,7 @@ resources:
             KeySchema:
               - AttributeName: globalPk
                 KeyType: HASH
-              - AttributeName: createdAt
+              - AttributeName: lastUpdatedAt
                 KeyType: RANGE
             Projection:
               ProjectionType: ALL
@@ -76,7 +76,7 @@ resources:
             KeySchema:
               - AttributeName: username
                 KeyType: HASH
-              - AttributeName: createdAt
+              - AttributeName: lastUpdatedAt
                 KeyType: RANGE
             Projection:
               ProjectionType: ALL

@@ -21,6 +21,7 @@ export const handler = async (event) => {
                 text: { S: text },
                 globalPk: { S: "MESSAGES" },
                 createdAt: { S: createdAt },
+                lastUpdatedAt: {S: createdAt}
             }
         });
 
@@ -34,6 +35,7 @@ export const handler = async (event) => {
                 username, 
                 text,
                 createdAt: formatDate(createdAt), 
+                lastUpdatedAT: formatDate(createdAt)
             },
         });
 
