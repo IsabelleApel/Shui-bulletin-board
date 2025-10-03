@@ -7,8 +7,8 @@ export function useMessages() {
 
     useEffect(() => {
         fetchMessages()
-            .then(data => {
-                setMessages(data);
+            .then(res => {
+                setMessages(res.data.messages);
                 setLoading(false);
             });
     }, []);

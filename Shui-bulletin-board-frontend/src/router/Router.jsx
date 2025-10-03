@@ -1,8 +1,9 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AddMsgPage from "../pages/AddMsgPage/AddMsgPage";
 import FlowPage from "../pages/FlowPage/FlowPage";
-import MessagePage from "../pages/MessagePage/MessagePage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UpdateMsgPage from "../pages/UpdateMsgPage/updateMsgPage";
+import UserFlowPage from "../pages/UserFlowPage/UserFlowPage";
 
 function Router() {
     const router = createBrowserRouter([
@@ -12,8 +13,12 @@ function Router() {
             errorElement: <ErrorPage />
         },
         {
-            path: "/messages/:id",
-            element: <MessagePage />
+            path: "/:username",
+            element: <UserFlowPage />
+        },
+        {
+            path: "/messages/update/:id",
+            element: <UpdateMsgPage />
 
         },
         {

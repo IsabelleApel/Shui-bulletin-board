@@ -1,23 +1,38 @@
 import { useState } from "react";
-import { addMessage } from "../../api/api";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./singularCard.css"
 
-function SingularCard() {
+function SingularCard({
+    initText = "",
+    initUsername = "",
+    isEdit = false,
+    onSubmit
+}) {
 
-    const [text, setText] = useState("");
-    const [username, setUsername] = useState("");
+    const [text, setText] = useState(initText);
+    const [username, setUsername] = useState(initUsername);
     const [error, setError] = useState(null);
     const [loading, SetLoading] = useState(false);
 
+    const navigate = useNavigate();
+
     async function handleSubmit(e) {
         e.preventDefault();
-        SetLoading(true);
         setError(null);
 
+        if(!text.trim() || !username.trim()) {
+            setError("användarnamn och meddelande måste fyllas i!")
+            return
+        }
+
+        SetLoading(true);
+
         try {
-            await addMessage(text, username);
-            setText("");
-            setUsername("");
+            await onSubmit(text, username.toLowerCase());
+            navigate("/");
         } catch (error) {
             setError(error.message);
         } finally {
@@ -28,6 +43,13 @@ function SingularCard() {
 
      return (
         <form className="add-msg" onSubmit={handleSubmit}>
+            <Link to="/">
+                <FontAwesomeIcon 
+                    icon={faXmark} 
+                    size="xl" 
+                    className="xmark" 
+                />
+            </Link>            
             <div className="bubble">
                 <textarea 
                     className="add-msg__text" 
@@ -43,7 +65,12 @@ function SingularCard() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
-            <button className="add-msg__btn" type="submit" disabled={loading}>{loading ? "Publicerar..." : "Publicera"}</button>
+            {error && <p className="error"><strong>ERROR:</strong> {error}</p>}
+            <button className="add-msg__btn" type="submit" disabled={loading}>
+                {loading 
+                ? (isEdit ? "Uppdaterar..." : "Publicerar...") 
+                : (isEdit ? "Uppdatera" : "Publicera")}
+            </button>
         </form>
      )
 }
